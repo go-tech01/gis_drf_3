@@ -9,4 +9,4 @@ def hello_world_template(request):
 
 @api_view()
 def hello_world(request):
-    return Response({'message':'Hello World ~ !!!'})
+    return Response({'message':'Return text3'})
