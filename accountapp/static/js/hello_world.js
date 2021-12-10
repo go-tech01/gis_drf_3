@@ -5,7 +5,8 @@ function send_input() {
       .then(function (response) {
         console.log(response);
 
-        document.getElementById('text').innerHTML = response.data['message']; // Return text
+        document.getElementById('text').innerHTML = response.data['text']; // Return text
+        document.getElementById('new_model_created_at').innerHTML = response.data['created_at']; // Return text
 
       })
       .catch(function (error) {
