@@ -20,5 +20,7 @@ def hello_world(request):
         new_model.save()
         serializer = NewModelSerializer(new_model)
         return Response(serializer.data)
-    return Response({'message':'Return text3'})
+    new_model_list = NewModel.objects.all()
+    serializer = NewModelSerializer(new_model_list, many=True)
+    return Response(serializer.data)
 
