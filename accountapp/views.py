@@ -1,11 +1,13 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 
 # Create your views here.
 from rest_framework.decorators import api_view
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 
 from accountapp.models import NewModel
-from accountapp.serializes import NewModelSerializer
+from accountapp.serializes import NewModelSerializer, UserSerializer
 
 
 def hello_world_template(request):
@@ -26,3 +28,8 @@ def hello_world(request):
 
 def AccountCreateTemplate(request):
     return render(request, 'accountapp/create.html')
+
+class AccountCreateAPIView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = []
