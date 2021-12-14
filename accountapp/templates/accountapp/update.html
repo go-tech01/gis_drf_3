@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <div class="my-5">
+            <h3>Update Account</h3>
+        </div>
+        <div>
+            <input type="text">
+            <input type="email">
+            <input type="submit" class="btn btn-dark rounded-pill px-5">
+        </div>
+    </div>
+<script src="{% static 'js/update.js' %}"></script>
+<script>initialize("{{ view.kwargs.pk }}")</script>
+{% endblock %}
