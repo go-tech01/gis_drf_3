@@ -67,5 +67,3 @@ class AccountDestroyAPIView(DestroyAPIView):
     queryset = User.objects.all()
     permission_classes = [IsOwner]
     authentication_classes = [TokenAuthentication]
-
-
