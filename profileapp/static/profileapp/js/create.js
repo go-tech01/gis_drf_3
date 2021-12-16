@@ -13,7 +13,8 @@ function send_input() {
     })
         .then(function (response) {
             console.log(response);
-            window.location.href = '/accounts/retrieve_template/'+response.data['owner']['id'];
+//            window.location.href = '/accounts/retrieve_template/'+response.data['owner']['id'];
+            window.location.href = '/accounts/retrieve_template/'+response.data['owner_id'];
         })
         .catch(function (error) {
             console.log(error);
