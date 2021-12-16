@@ -58,3 +58,10 @@ class AccountRUDView(RetrieveUpdateDestroyAPIView):
     serializer_class = UserWithoutPasswordSerializer
     permission_classes = [IsOwner]
     authentication_classes = [TokenAuthentication]
+
+class AccountTokenRetrieveAPIView(APIView):
+    authentication_classes = [TokenAuthentication]
+    http_method_names = ['get']
+    def get(self, request, *args, **kwargs):
+        serializer = UserWithoutPasswordSerializer(request.user)
+        return Response(serializer.data)

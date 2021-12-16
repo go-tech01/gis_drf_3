@@ -4,7 +4,7 @@ from rest_framework.authtoken import views
 
 from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, \
     AccountLoginTemplate, AccountRetrieveTemplateView, \
-    AccountUpdateTemplateView, AccountDestroyTemplateView, AccountRUDView
+    AccountUpdateTemplateView, AccountDestroyTemplateView, AccountRUDView, AccountTokenRetrieveAPIView
 
 app_name = 'accountapp'
 
@@ -23,6 +23,7 @@ urlpatterns = [
     path('update_template/<int:pk>', AccountUpdateTemplateView.as_view(), name='update_template'),
     path('delete_template/<int:pk>', AccountDestroyTemplateView.as_view(), name='delete_template'),
     path('<int:pk>', AccountRUDView.as_view(), name='RUD'),
+    path('token/', AccountTokenRetrieveAPIView.as_view(), name='token'),
 ]
 """
 ListCreateAPIView
