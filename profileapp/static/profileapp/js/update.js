@@ -16,7 +16,7 @@ function initialize(pk) {
         });
 }
 
-function update_account(pk) {
+function update_profile(pk) {
     var form = FormData()
     form.append('nickname', document.getElementById('nickname').value);
     form.append('message', document.getElementById('message').value);
