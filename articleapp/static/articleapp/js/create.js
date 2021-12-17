@@ -13,9 +13,7 @@ function send_input() {
     })
         .then(function (response) {
             console.log(response);
-            document.getElementById('alert_box').innerHTML
-                = "<div class='btn btn-primary rounded-pill px-5'>게시글 작성에 성공했습니다</div>"
-//            window.location.href = '/articles/retrieve_template/'+response.data['id'];
+            window.location.href = '/articles/retrieve_template/'+response.data['id'];
         })
         .catch(function (error) {
             console.log(error);
