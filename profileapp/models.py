@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 
+from image_processing import thumbnail
+
+
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     nickname = models.CharField(max_length=50, null=False)
@@ -16,16 +19,8 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         self.generate_thumbnail()
         super().save(*args, **kwargs)
-
     def generate_thumbnail(self):
-        img = Image.open(self.image)
-        width, height = img.size
-        ratio = height / width
-        pixel = min(250, width)
-        img = img.convert('RGB')
-        img.thumbnail((pixel, round(pixel*ratio)))
-        output = BytesIO()
-        img.save(output, format='JPEG', quality=95)
-        output.seek(0)
-        self.thumb = InMemoryUploadedFile(output, "ImageField", self.image.name,
-                                          'image/jpeg', sys.getsizeof(output), None)
+        if self.image:
+            output = thumbnail.generate_thumbnail(self.image)
+            self.thumb = InMemoryUploadedFile(output, "ImageField", self.image.name,
+                                              'image/jpeg', sys.getsizeof(output), None)
