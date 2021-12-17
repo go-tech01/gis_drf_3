@@ -2,6 +2,6 @@ from rest_framework.serializers import ModelSerializer
 from articleapp.models import Article
 
 class ArticleSerializer(ModelSerializer):
-    class Meata:
+    class Meta:
         model = Article
         fields = ['title','image','content']
