@@ -7,7 +7,7 @@ function getCookie(name) {
 function initialize() {
     axios({
         method:'get',
-        url:'/articles/list/',
+        url:'/articles/',
         headers:{
             Authorization: decodeURIComponent(getCookie('drf_token'))
         }
@@ -16,7 +16,7 @@ function initialize() {
             // handle success
             console.log(response);
             for (let i=0; i < response.data['results'].length; i++){
-                document.getElementById('article_list').innerHTML
+                document.getElementById('item'+i).innerHTML
                 +=
                 "<div>" +
                 "<a href=\"/articles/retrieve_template/" + response.data['results'][i]['id'] + "\">" +
@@ -24,6 +24,26 @@ function initialize() {
                 " src=\"" + response.data['results'][i]['image'] + "\" alt=\"\">" +
                 "</a>" +
                 "</div>";
+            }
+            var pagination = document.getElementById('pagination');
+            if ( response.data['previous'] !== null ){
+                pagination.innerHTML +=
+                    "<a href=\"" + response.data['previous'] + "\"" +
+                    "   class=\"btn btn-secondary rounded-pill px-5 mx-3\">" +
+                    "Previous" +
+                    "</a>";
+            }
+            pagination.innerHTML +=
+                    "<a href=\"#\"" +
+                    "   class=\"btn btn-dark rounded-pill px-5 mx-3\">" +
+                    "Cuurent page" +
+                    "</a>";
+            if ( response.data['next'] !== null ){
+                pagination.innerHTML +=
+                    "<a href=\"" + response.data['next'] + "\"" +
+                    "   class=\"btn btn-secondary rounded-pill px-5 mx-3\">" +
+                    "Next" +
+                    "</a>";
             }
         })
         .catch(function (error) {
