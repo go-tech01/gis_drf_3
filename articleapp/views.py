@@ -14,16 +14,6 @@ from articleapp.serializers import ArticleSerializer
 class ArticleCreateTemplateView(TemplateView):
     template_name = 'articleapp/create.html'
 
-class MagicGridTemplateView(TemplateView):
-    template_name = 'articleapp/magic_grid.html'
-
-class ArticleListAPIView(ListAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    permission_classes = [AllowAny]
-    authentication_classes = [TokenAuthentication]
-    pagination_class = CustomPageNumberPagination
-
 class ArticleCreateAPIView(CreateAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
@@ -31,6 +21,16 @@ class ArticleCreateAPIView(CreateAPIView):
     authentication_classes = [TokenAuthentication]
     def perform_create(self, serializer):
         serializer.save(writer=self.request.user)
+
+class ArticleListTemplateView(TemplateView):
+    template_name = 'articleapp/list.html'
+
+class ArticleListAPIView(ListAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    permission_classes = [AllowAny]
+    authentication_classes = [TokenAuthentication]
+    pagination_class = CustomPageNumberPagination
 
 class ArticleRetrieveTemplateView(TemplateView):
     template_name = 'articleapp/retrieve.html'

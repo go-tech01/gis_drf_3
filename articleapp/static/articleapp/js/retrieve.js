@@ -19,7 +19,7 @@ function initialize(pk) {
             document.getElementById('created_at').innerHTML = response.data['created_at'];
             document.getElementById('content').innerHTML = response.data['content'];
             if (response.data['image'] !== null){
-                document.getElementById('image').src = response.data['thumb'];
+                document.getElementById('image').src = response.data['image'];
             } else {
                 document.getElementById('image').style.display = 'none';
             }
