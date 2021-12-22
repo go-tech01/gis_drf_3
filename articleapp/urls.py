@@ -1,6 +1,7 @@
 from django.urls import path
 from articleapp.views import ArticleCreateAPIView, ArticleCreateTemplateView, ArticleRUDAPIView, \
-    ArticleRetrieveTemplateView, ArticleUpdateTemplateView, ArticleDestroyTemplateView, MagicGridTemplateView
+    ArticleRetrieveTemplateView, ArticleUpdateTemplateView, ArticleDestroyTemplateView, MagicGridTemplateView, \
+    ArticleListAPIView
 
 app_name = 'articleapp'
 
@@ -12,5 +13,6 @@ urlpatterns = [
     path('destroy_template/<int:pk>', ArticleDestroyTemplateView.as_view(), name='destroy_template'),
 
     path('', ArticleCreateAPIView.as_view(), name='create'),
+    path('list/', ArticleListAPIView.as_view(), name='list'),
     path('<int:pk>', ArticleRUDAPIView.as_view(), name='RUD'),
 ]
