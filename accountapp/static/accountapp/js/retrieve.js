@@ -20,7 +20,7 @@ function initialize(pk) {
             if (response.data['profile']['thumb'] !== null){
                 document.getElementById('image').src = response.data['profile']['thumb'];
             } else if (response.data['profile']['image'] !== null){
-                document.getElementById('image').src = response.data['profile']['thumb'];
+                document.getElementById('image').src = response.data['profile']['image'];
             } else {
                 document.getElementById('image').style.display = 'none';
             }

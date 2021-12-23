@@ -27,3 +27,5 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+CELERY_BROKER_URL = "amqp://guest@3.21.185.18:5672"
