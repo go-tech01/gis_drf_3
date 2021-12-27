@@ -9,7 +9,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 @shared_task
 def generate_thumbnail_celery_lag(profile_id):
     from profileapp.models import Profile
-    target_profile = Profile.objecs.get(pk=profile_id)
+    target_profile = Profile.objects.get(pk=profile_id)
     time.sleep(10)
     img = Image.open(target_profile.image)
     width, height = img.size
